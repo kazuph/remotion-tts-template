@@ -1,16 +1,18 @@
-# Remotion + VOICEVOX 動画テンプレート
+# Remotion + Qwen3-TTS 動画テンプレート
 
 ずんだもん＆めたんの掛け合い紹介動画を簡単に作成できるテンプレートです。
+Apple Silicon Mac上でローカルTTS（Qwen3-TTS）を使用して音声生成します。
 
 ![デフォルトの黒板風デザイン](https://img.shields.io/badge/デザイン-黒板風-2d5a3d)
 ![解像度](https://img.shields.io/badge/解像度-1920x1080-blue)
 ![フレームレート](https://img.shields.io/badge/FPS-30-green)
+![Apple Silicon](https://img.shields.io/badge/Apple_Silicon-M1%2FM2%2FM3%2FM4-black)
 
 ## 特徴
 
+- **ローカルTTS** - Qwen3-TTS（MLX）でApple Silicon上で高速音声生成
+- **口パクアニメーション** - 音声波形に同期した自然な口パク
 - **対話的な動画作成** - Claude Codeと会話しながら動画を作成
-- **自動音声生成** - VOICEVOXで高品質な音声を自動生成
-- **口パクアニメーション** - キャラクターが自然に話しているように見える
 - **表情差分対応** - happy, surprised, thinking, sad などの表情切り替え
 - **BGM・効果音対応** - 場面に合わせた音声演出
 - **カスタマイズ可能** - YAMLファイルでフォント、色、レイアウトを簡単変更
@@ -21,25 +23,32 @@
 
 ### 1. 必要なもの
 
-| ソフト | 説明 |
+| 必要環境 | 説明 |
 |--------|------|
+| Apple Silicon Mac | M1/M2/M3/M4チップ搭載のMac |
 | [Node.js 18+](https://nodejs.org/) | JavaScript実行環境 |
-| [VOICEVOX](https://voicevox.hiroshiba.jp/) | 無料の音声合成ソフト |
+| Python 3.10+ | 音声生成スクリプト用 |
 | [Claude Code](https://claude.ai/code) | 対話的に動画を作成（推奨） |
 
 ### 2. セットアップ
 
 ```bash
-git clone https://github.com/nyanko3141592/remotion-voicevox-template.git my-video
+git clone https://github.com/kazuph/remotion-tts-template.git my-video
 cd my-video
 npm install
+
+# Python仮想環境のセットアップ
+python3 -m venv .venv
+source .venv/bin/activate
+
+# MLX関連パッケージのインストール
+pip install git+https://github.com/Blaizzy/mlx-audio.git soundfile numpy
+
+# 検証用（Whisper）
+pip install mlx-whisper
 ```
 
-### 3. VOICEVOXを起動
-
-VOICEVOXアプリを起動しておいてください（音声生成に必要）。
-
-### 4. プレビューサーバーを起動
+### 3. プレビューサーバーを起動
 
 ```bash
 npm start
@@ -48,7 +57,7 @@ npm start
 ブラウザで http://localhost:3000 を開くとプレビューが表示されます。
 デモ用のセリフと音声が含まれているので、すぐに動作確認できます。
 
-### 5. 動画を作成（Claude Code使用時）
+### 4. 動画を作成（Claude Code使用時）
 
 ```bash
 claude  # 別ターミナルでClaude Codeを起動
@@ -68,8 +77,8 @@ Claude Codeに話しかけるだけ：
 ┌─────────────────────────────────────────────────────────────────┐
 │                         準備                                    │
 │  ┌──────────┐    ┌──────────┐    ┌──────────┐                 │
-│  │ Node.js  │    │ VOICEVOX │    │  Claude  │                 │
-│  │ インストール│    │   起動   │    │   起動   │                 │
+│  │ Node.js  │    │  Python  │    │  Claude  │                 │
+│  │ インストール│    │   venv   │    │   起動   │                 │
 │  └──────────┘    └──────────┘    └──────────┘                 │
 └─────────────────────────────────────────────────────────────────┘
                               │
@@ -84,11 +93,12 @@ Claude Codeに話しかけるだけ：
                               │
                               ▼
 ┌─────────────────────────────────────────────────────────────────┐
-│  2. 音声生成                                                     │
+│  2. 音声生成（Qwen3-TTS）                                        │
 │     「音声を生成して」                                            │
 │                              │                                  │
 │                              ▼                                  │
-│     VOICEVOX API で音声生成 → public/voices/*.wav               │
+│     MLXでローカル音声生成 → public/voices/*.wav                  │
+│     口パクデータも同時生成 → src/data/mouth-data.generated.ts    │
 └─────────────────────────────────────────────────────────────────┘
                               │
                               ▼
@@ -138,9 +148,35 @@ Claude Codeに話しかけるだけ：
 | コマンド | 説明 |
 |---------|------|
 | `npm start` | プレビュー（http://localhost:3000） |
-| `npm run voices` | 音声生成 |
+| `.venv/bin/python scripts/generate-voices-qwen.py` | 音声生成（Qwen3-TTS） |
 | `npm run build` | 動画出力（out/video.mp4） |
 | `npm run init` | 新規プロジェクト初期化 |
+
+---
+
+## 音声生成の設定
+
+### キャラクター音声
+
+`scripts/generate-voices-qwen.py`で音声のスタイルを設定：
+
+```python
+CHARACTER_INSTRUCTS = {
+    "zundamon": "元気で明るく可愛らしい若い女の子の声。語尾に特徴があり、ハキハキとした話し方",
+    "metan": "落ち着いた大人っぽい女性の声。上品で穏やかな話し方",
+}
+```
+
+### 再生速度
+
+`src/config.ts`で再生速度を調整：
+
+```typescript
+export const VIDEO_CONFIG = {
+  fps: 30,
+  playbackRate: 1.2,  // 音声を1.2倍速で再生
+};
+```
 
 ---
 
@@ -203,6 +239,8 @@ colors:
 ## 詳しい使い方
 
 詳細は **[CLAUDE.md](./CLAUDE.md)** を参照してください。
+
+Qwen3-TTSでの動画生成の詳細は **[skills/remotion-qwen-tts/](./skills/remotion-qwen-tts/)** を参照してください。
 
 ---
 

@@ -1,6 +1,7 @@
-# Remotion + VOICEVOX 動画テンプレート 詳細ガイド
+# Remotion + Qwen3-TTS 動画テンプレート 詳細ガイド
 
 ずんだもん＆めたんの掛け合い紹介動画を作成するための完全ガイドです。
+Apple Silicon Mac上でQwen3-TTS（MLX）を使用して音声を生成します。
 
 ---
 
@@ -23,11 +24,15 @@
 
 ```bash
 # 1. テンプレートをコピー
-git clone https://github.com/nyanko3141592/remotion-voicevox-template.git my-video
+git clone https://github.com/kazuph/remotion-tts-template.git my-video
 cd my-video
 npm install
 
-# 2. VOICEVOXを起動
+# 2. Python仮想環境をセットアップ
+python3 -m venv .venv
+source .venv/bin/activate
+pip install git+https://github.com/Blaizzy/mlx-audio.git soundfile numpy
+pip install mlx-whisper  # 検証用
 
 # 3. プレビューサーバーを起動
 npm start
@@ -122,7 +127,7 @@ export const scriptData: ScriptLine[] = [
 
 ## 英語の発音問題
 
-VOICEVOXは英語を正しく発音できません。`text`にカタカナ、`displayText`に英語を設定します。
+TTSモデルは英語を正しく発音できないことがあります。`text`にカタカナ、`displayText`に英語を設定します。
 
 ```typescript
 {
@@ -256,7 +261,7 @@ colors:
 | コマンド | 説明 |
 |---------|------|
 | `npm start` | プレビュー（http://localhost:3000） |
-| `npm run voices` | 音声生成（VOICEVOX起動必須） |
+| `.venv/bin/python scripts/generate-voices-qwen.py` | 音声生成（Qwen3-TTS） |
 | `npm run build` | 動画出力（out/video.mp4） |
 | `npm run init` | 新規プロジェクト初期化（スクリプトをリセット） |
 | `npm run sync-settings` | YAML設定を反映＋画像スキャン |
@@ -264,7 +269,7 @@ colors:
 ### 手順
 
 1. `src/data/script.ts` を編集
-2. `npm run voices` で音声生成
+2. `.venv/bin/python scripts/generate-voices-qwen.py` で音声生成
 3. `npm start` でプレビュー確認
 4. `npm run build` で動画出力
 
@@ -276,16 +281,21 @@ colors:
 ├── video-settings.yaml      # ★ スタイル設定
 ├── src/
 │   ├── data/
-│   │   └── script.ts        # ★ セリフデータ
+│   │   ├── script.ts        # ★ セリフデータ
+│   │   └── mouth-data.generated.ts  # 口パクデータ（自動生成）
 │   ├── components/
 │   │   ├── Character.tsx    # キャラクター表示
 │   │   ├── Subtitle.tsx     # 字幕
 │   │   └── SceneVisuals.tsx # シーン別ビジュアル
-│   ├── config.ts            # 基本設定
+│   ├── config.ts            # 基本設定（FPS、playbackRate）
 │   └── Main.tsx             # メインコンポーネント
+├── scripts/
+│   └── generate-voices-qwen.py  # 音声生成スクリプト
 ├── public/
 │   ├── images/              # キャラクター画像
 │   └── voices/              # 音声ファイル（自動生成）
+├── skills/
+│   └── remotion-qwen-tts/   # 動画生成スキル（詳細ドキュメント）
 └── out/
     └── video.mp4            # 出力動画
 ```
@@ -294,14 +304,14 @@ colors:
 
 ## トラブルシューティング
 
-### VOICEVOXに接続できない
+### 音声生成でエラーが出る
 ```
-Error: ECONNREFUSED
+ModuleNotFoundError: No module named 'mlx_audio'
 ```
-→ VOICEVOXアプリが起動しているか確認
+→ `.venv/bin/python`を使っているか確認。仮想環境をアクティベートして再実行。
 
 ### 音声と字幕がずれる
-→ `npm run voices` を再実行（durationInFramesが自動修正される）
+→ 音声を再生成してdurationInFramesを更新
 
 ### 英語の発音がおかしい
 → `text`をカタカナに、`displayText`に英語を設定
@@ -314,7 +324,13 @@ Error: ECONNREFUSED
 ```
 Error: Could not find file: voices/XX_zundamon.wav
 ```
-→ `npm run voices` で音声を生成
+→ `scripts/generate-voices-qwen.py` で音声を生成
+
+### 末尾に長い無音がある
+→ `Root.tsx`でのフレーム計算を確認。`skills/remotion-qwen-tts/`のドキュメントを参照
+
+### セリフが途中で切れる
+→ 二重playbackRate調整の問題。`skills/remotion-qwen-tts/`のドキュメントを参照
 
 ---
 
@@ -446,16 +462,13 @@ public/
 
 ---
 
-## Claude Code Skillの導入
+## Qwen3-TTS詳細ドキュメント
 
-Claude Codeをより効率的に使うために、専用Skillを導入できます：
+動画生成の詳細な技術情報（フレーム計算、口パク同期、検証ワークフローなど）については、
+**[skills/remotion-qwen-tts/](./skills/remotion-qwen-tts/)** を参照してください。
 
-```bash
-mkdir -p ~/.claude/skills/remotion-video
-curl -o ~/.claude/skills/remotion-video/SKILL.md \
-  https://raw.githubusercontent.com/nyanko3141592/remotion-voicevox-template/master/SKILL.md
-```
-
-Skillを入れると：
-- 「紹介動画を作りたい」と言うだけで適切なワークフローを案内
-- 英語→カタカナ変換、音声生成の手順を熟知した状態で開始
+特に以下の内容が含まれています：
+- フレーム計算の罠（二重調整問題）
+- 口パク同期アルゴリズム
+- 検証ワークフロー（Whisper検証、動画音声解析）
+- トラブルシューティング詳細
