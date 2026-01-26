@@ -3,7 +3,11 @@
 ずんだもん＆めたんの掛け合い紹介動画を簡単に作成できるテンプレートです。
 Apple Silicon Mac上でローカルTTS（Qwen3-TTS）を使用して音声生成します。
 
-[![デモ動画](public/content/thumbnail.jpg)](https://github.com/kazuph/remotion-tts-template/releases/download/v1.0.0/demo.mp4)
+
+
+https://github.com/user-attachments/assets/8da41336-2ae6-4b6a-967e-717bf72933ee
+
+
 
 > **↑ クリックでデモ動画を再生！この動画もこのテンプレートで作成されています！**
 
