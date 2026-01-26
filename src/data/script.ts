@@ -76,21 +76,20 @@ export const scenes: SceneInfo[] = [
   { id: 3, title: "エンディング", background: "gradient" },
 ];
 
-// デモ用スクリプトデータ
-// このテンプレートをコピーしてすぐに動作確認できます
-// セリフを編集後、npm run voices で音声を再生成してください
+// Qwen3-TTS テスト用スクリプトデータ
+// 長めの掛け合いで音声品質をテスト
 export const scriptData: ScriptLine[] = [
   {
     id: 1,
     character: "zundamon",
-    text: "ずんだもんなのだ！",
+    text: "やっほー！ずんだもんなのだ！今日はすごいお知らせがあるのだ！",
     scene: 1,
     voiceFile: "01_zundamon.wav",
-    durationInFrames: 53, // 1.45s
+    durationInFrames: 154, // 6.16s
     pauseAfter: 15,
     visual: {
       type: "text",
-      text: "Remotion × VOICEVOX\nテンプレート",
+      text: "Qwen3-TTS\nローカル音声合成",
       fontSize: 80,
       color: "#ffffff",
       animation: "zoomIn",
@@ -99,29 +98,175 @@ export const scriptData: ScriptLine[] = [
   {
     id: 2,
     character: "metan",
-    text: "四国めたんです。",
+    text: "あら、ずんだもん。何かしら？そんなに興奮して。",
     scene: 1,
     voiceFile: "02_metan.wav",
-    durationInFrames: 44, // 1.19s
+    durationInFrames: 196, // 7.84s
     pauseAfter: 15,
+    visual: {
+      type: "text",
+      text: "🎤 音声合成技術",
+      fontSize: 60,
+      color: "#ffffff",
+      animation: "fadeIn",
+    },
   },
   {
     id: 3,
     character: "zundamon",
-    text: "このテンプレートで紹介動画が作れるのだ！",
+    text: "なんと！クウェンスリーティーティーエスという音声合成が、マックでローカル実行できるようになったのだ！",
+    displayText: "なんと！Qwen3-TTSという音声合成が、Macでローカル実行できるようになったのだ！",
     scene: 1,
     voiceFile: "03_zundamon.wav",
-    durationInFrames: 123, // 3.39s
+    durationInFrames: 238, // 9.52s
     pauseAfter: 10,
+    visual: {
+      type: "text",
+      text: "💻 ローカル実行\n☁️ クラウド不要",
+      fontSize: 60,
+      color: "#ffffff",
+      animation: "slideUp",
+    },
   },
   {
     id: 4,
     character: "metan",
-    text: "よろしくね。",
+    text: "それは興味深いわね。クラウドに送らなくても音声が作れるということかしら？",
     scene: 1,
     voiceFile: "04_metan.wav",
-    durationInFrames: 31, // 0.85s
-    pauseAfter: 30,
+    durationInFrames: 240, // 9.6s
+    pauseAfter: 15,
+  },
+  {
+    id: 5,
+    character: "zundamon",
+    text: "そうなのだ！エムエルエックスという技術でアップルシリコンのマックに最適化されてるのだ！",
+    displayText: "そうなのだ！MLXという技術でApple SiliconのMacに最適化されてるのだ！",
+    scene: 2,
+    voiceFile: "05_zundamon.wav",
+    durationInFrames: 256, // 10.24s
+    pauseAfter: 10,
+    visual: {
+      type: "text",
+      text: "🍎 Apple Silicon\n⚡ MLX最適化",
+      fontSize: 60,
+      color: "#ffffff",
+      animation: "zoomIn",
+    },
+  },
+  {
+    id: 6,
+    character: "metan",
+    text: "へぇ、それならインターネット環境がなくても使えるわね。プライバシーの面でも安心だわ。",
+    scene: 2,
+    voiceFile: "06_metan.wav",
+    durationInFrames: 244, // 9.76s
+    pauseAfter: 15,
+    visual: {
+      type: "text",
+      text: "🔒 プライバシー安心\n📵 オフライン対応",
+      fontSize: 60,
+      color: "#ffffff",
+      animation: "fadeIn",
+    },
+  },
+  {
+    id: 7,
+    character: "zundamon",
+    text: "しかもボイスデザインモードっていう機能があって、声の特徴を文章で指定できるのだ！",
+    scene: 2,
+    voiceFile: "07_zundamon.wav",
+    durationInFrames: 152, // 6.08s
+    pauseAfter: 10,
+    visual: {
+      type: "text",
+      text: "🎨 Voice Design Mode\n✍️ 文章で声を指定",
+      fontSize: 55,
+      color: "#ffffff",
+      animation: "slideLeft",
+    },
+  },
+  {
+    id: 8,
+    character: "metan",
+    text: "つまり、元気な声とか、落ち着いた声とか、好みの声を作れるということね。それは便利だわ。",
+    scene: 2,
+    voiceFile: "08_metan.wav",
+    durationInFrames: 280, // 11.2s
+    pauseAfter: 15,
+    visual: {
+      type: "text",
+      text: "😊 元気な声\n😌 落ち着いた声\n🎭 好みの声を自在に",
+      fontSize: 50,
+      color: "#ffffff",
+      animation: "bounce",
+    },
+  },
+  {
+    id: 9,
+    character: "zundamon",
+    text: "モデルサイズも選べて、軽いやつなら1.7ビリオンパラメータで動くのだ！",
+    displayText: "モデルサイズも選べて、軽いやつなら1.7Bパラメータで動くのだ！",
+    scene: 3,
+    voiceFile: "09_zundamon.wav",
+    durationInFrames: 224, // 8.96s
+    pauseAfter: 10,
+    visual: {
+      type: "text",
+      text: "📦 1.7B パラメータ\n💨 軽量・高速",
+      fontSize: 60,
+      color: "#ffffff",
+      animation: "zoomIn",
+    },
+  },
+  {
+    id: 10,
+    character: "metan",
+    text: "4ビット量子化されているのかしら？それならメモリも少なくて済むわね。",
+    displayText: "4bit量子化されているのかしら？それならメモリも少なくて済むわね。",
+    scene: 3,
+    voiceFile: "10_metan.wav",
+    durationInFrames: 208, // 8.32s
+    pauseAfter: 15,
+    visual: {
+      type: "text",
+      text: "🔢 4bit 量子化\n💾 省メモリ",
+      fontSize: 60,
+      color: "#ffffff",
+      animation: "fadeIn",
+    },
+  },
+  {
+    id: 11,
+    character: "zundamon",
+    text: "さすがめたんは詳しいのだ！というわけで、みんなもローカル音声合成を試してみてほしいのだ！",
+    scene: 3,
+    voiceFile: "11_zundamon.wav",
+    durationInFrames: 244, // 9.76s
+    pauseAfter: 10,
+    visual: {
+      type: "text",
+      text: "🚀 みんなも\n試してみてね！",
+      fontSize: 70,
+      color: "#ffffff",
+      animation: "bounce",
+    },
+  },
+  {
+    id: 12,
+    character: "metan",
+    text: "それでは、良い音声合成ライフをお過ごしくださいね。バイバイ。",
+    scene: 3,
+    voiceFile: "12_metan.wav",
+    durationInFrames: 210, // 8.4s
+    pauseAfter: 5, // エンディングは短めに
+    visual: {
+      type: "text",
+      text: "👋 バイバイ！",
+      fontSize: 80,
+      color: "#ffffff",
+      animation: "slideUp",
+    },
   },
 ];
 

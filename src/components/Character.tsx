@@ -6,6 +6,8 @@ interface CharacterProps {
   characterId: CharacterId;
   isSpeaking: boolean;
   emotion?: string;
+  mouthData?: boolean[]; // 各フレームで口を開けるかどうか
+  frameInLine?: number; // セリフ内での現在フレーム位置
 }
 
 // 表情に応じた画像ファイル名を取得（存在チェック付き）
@@ -42,6 +44,8 @@ export const Character: React.FC<CharacterProps> = ({
   characterId,
   isSpeaking,
   emotion = "normal",
+  mouthData = [],
+  frameInLine = 0,
 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
@@ -54,8 +58,13 @@ export const Character: React.FC<CharacterProps> = ({
 
   const isLeft = characterConfig.position === "left";
 
-  // 口パクアニメーション（話している時、約6fpsで口を開閉）
-  const mouthOpen = isSpeaking ? Math.floor(frame / 5) % 2 === 0 : false;
+  // 口パクアニメーション（音声波形データを使用）
+  // mouthDataがある場合はそれを使用、ない場合は従来の方法
+  const mouthOpen = isSpeaking
+    ? mouthData.length > 0
+      ? mouthData[frameInLine] ?? false
+      : Math.floor(frame / 5) % 2 === 0
+    : false;
 
   // 話している時のアニメーション（上下に揺れる）
   const bounceY = isSpeaking

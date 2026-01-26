@@ -5,13 +5,14 @@ import { COLORS, VIDEO_CONFIG } from "./config";
 import { Subtitle } from "./components/Subtitle";
 import { Character } from "./components/Character";
 import { SceneVisuals } from "./components/SceneVisuals";
+import { MOUTH_DATA } from "./data/mouth-data.generated";
 
 // Google Fontsをロード
 const { fontFamily } = loadFont();
 
-// 再生速度を考慮したフレーム数を計算
-const getAdjustedFrames = (frames: number): number =>
-  Math.ceil(frames / VIDEO_CONFIG.playbackRate);
+// durationInFramesはすでにplaybackRate考慮済みなのでそのまま使用
+// （generate-voices-qwen.pyで duration / playbackRate * FPS として計算済み）
+const getAdjustedFrames = (frames: number): number => frames;
 
 export const Main: React.FC = () => {
   const frame = useCurrentFrame();
@@ -23,6 +24,7 @@ export const Main: React.FC = () => {
   let currentLineStartFrame = 0;
   let currentScene = 1;
   let isSpeaking = false;
+  let frameInLine = 0; // セリフ内での現在フレーム位置
 
   for (const line of scriptData) {
     const adjustedDuration = getAdjustedFrames(line.durationInFrames);
@@ -35,11 +37,17 @@ export const Main: React.FC = () => {
       currentScene = line.scene;
       // 音声再生中は adjustedDuration の間だけ
       isSpeaking = frame < accumulatedFrames + adjustedDuration;
+      frameInLine = frame - accumulatedFrames;
       break;
     }
     accumulatedFrames = lineEndFrame;
     currentScene = line.scene;
   }
+
+  // 現在のセリフの口パクデータを取得
+  const currentMouthData = currentLine
+    ? MOUTH_DATA[currentLine.voiceFile] ?? []
+    : [];
 
   const sceneInfo = scenes.find((s) => s.id === currentScene) || scenes[0];
 
@@ -137,11 +145,15 @@ export const Main: React.FC = () => {
         characterId="metan"
         isSpeaking={isSpeaking && currentLine?.character === "metan"}
         emotion={currentLine?.character === "metan" ? currentLine.emotion : "normal"}
+        mouthData={currentLine?.character === "metan" ? currentMouthData : []}
+        frameInLine={frameInLine}
       />
       <Character
         characterId="zundamon"
         isSpeaking={isSpeaking && currentLine?.character === "zundamon"}
         emotion={currentLine?.character === "zundamon" ? currentLine.emotion : "normal"}
+        mouthData={currentLine?.character === "zundamon" ? currentMouthData : []}
+        frameInLine={frameInLine}
       />
 
       {/* 字幕 */}

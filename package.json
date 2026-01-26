@@ -5,7 +5,9 @@
   "scripts": {
     "start": "npm run sync-settings && remotion studio src/index.ts",
     "build": "npm run sync-settings && remotion render src/index.ts Main out/video.mp4",
-    "voices": "npx ts-node scripts/generate-voices.ts",
+    "voices": ".venv/bin/python scripts/generate-voices-qwen.py",
+    "voices:qwen": ".venv/bin/python scripts/generate-voices-qwen.py",
+    "voices:voicevox": "npx ts-node scripts/generate-voices.ts",
     "preview": "npm run sync-settings && remotion preview src/index.ts",
     "sync-settings": "npx ts-node scripts/sync-settings.ts",
     "init": "npx ts-node scripts/init-project.ts"
