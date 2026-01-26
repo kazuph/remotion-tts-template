@@ -1,3 +1,5 @@
+import { CHARACTERS, CharacterId as GeneratedCharacterId } from "./settings.generated";
+
 // 動画設定
 export const VIDEO_CONFIG = {
   width: 1920,
@@ -18,12 +20,17 @@ export const COLORS = {
   warning: "#f59e0b",
   error: "#ef4444",
   pink: "#ec4899",
+  // キャラクター固有カラー（characters.yamlのcolorと同じ）
   zundamon: "#228B22",        // フォレストグリーン（暗め）
   metan: "#FF1493",           // ディープピンク
+  aoi: "#00BFFF",             // ディープスカイブルー
+  murasaki: "#9932CC",        // ダークオーキッド
+  mofumo: "#FFB6C1",          // ライトピンク
+  yoru: "#4169E1",            // ロイヤルブルー
 };
 
-// キャラクター定義
-export type CharacterId = "zundamon" | "metan";
+// キャラクター定義（settings.generated.tsから生成）
+export type CharacterId = GeneratedCharacterId;
 
 export interface CharacterConfig {
   id: CharacterId;
@@ -39,40 +46,30 @@ export interface CharacterConfig {
   flipX?: boolean; // 画像を左右反転するか
 }
 
-// デフォルトキャラクター設定
-// めたん: 左下、ずんだもん: 右下
-export const DEFAULT_CHARACTERS: CharacterConfig[] = [
-  {
-    id: "metan",
-    name: "四国めたん",
-    voicevoxSpeakerId: 2,
-    position: "left",
-    color: COLORS.metan,
+// デフォルトキャラクター設定（characters.yamlから動的生成）
+// characters.yamlで定義されたキャラクターをCharacterConfig形式に変換
+export const DEFAULT_CHARACTERS: CharacterConfig[] = Object.entries(CHARACTERS).map(
+  ([id, char]) => ({
+    id: id as CharacterId,
+    name: char.name,
+    voicevoxSpeakerId: char.position === "right" ? 3 : 2, // 右:3, 左:2
+    position: char.position,
+    color: char.color,
     images: {
-      mouthOpen: "images/metan/mouth_open.png",
-      mouthClose: "images/metan/mouth_close.png",
-    },
-    flipX: true, // 元画像が左向きなので右向きに反転
-  },
-  {
-    id: "zundamon",
-    name: "ずんだもん",
-    voicevoxSpeakerId: 3,
-    position: "right",
-    color: COLORS.zundamon,
-    images: {
-      mouthOpen: "images/zundamon/mouth_open.png",
-      mouthClose: "images/zundamon/mouth_close.png",
+      mouthOpen: `images/${id}/mouth_open.png`,
+      mouthClose: `images/${id}/mouth_close.png`,
     },
     flipX: false,
-  },
-];
+  })
+);
 
-// キャラクターIDからspeakerIdを取得するマップ
-export const characterSpeakerMap: Record<CharacterId, number> = {
-  zundamon: 3,
-  metan: 2,
-};
+// キャラクターIDからspeakerIdを取得するマップ（characters.yamlから動的生成）
+export const characterSpeakerMap: Record<CharacterId, number> = Object.fromEntries(
+  Object.entries(CHARACTERS).map(([id, char]) => [
+    id,
+    char.position === "right" ? 3 : 2, // 右:3, 左:2
+  ])
+) as Record<CharacterId, number>;
 
 // シーン背景タイプ
 export type BackgroundType = "gradient" | "solid" | "image";

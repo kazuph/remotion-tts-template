@@ -5,6 +5,22 @@ Apple Silicon Mac上でQwen3-TTS（MLX）を使用して音声を生成します
 
 ---
 
+## Claude Code向け重要ルール
+
+### 動画を開く時は必ずQuickTimeを閉じてから開く
+
+```bash
+# ❌ NG: そのままopen
+open out/video.mp4
+
+# ✅ OK: QuickTimeを閉じてから開く
+osascript -e 'tell application "QuickTime Player" to quit' 2>/dev/null; sleep 1; open out/video.mp4
+```
+
+**理由**: QuickTimeがキャッシュを保持するため、同じファイル名だと古い動画が再生される。
+
+---
+
 ## 目次
 
 1. [クイックスタート](#クイックスタート)

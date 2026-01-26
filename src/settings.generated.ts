@@ -1,5 +1,5 @@
 // このファイルは自動生成されます
-// 編集する場合は video-settings.yaml を編集してください
+// 編集する場合は video-settings.yaml と characters.yaml を編集してください
 // npm run sync-settings で再生成されます
 
 export const SETTINGS = {
@@ -42,20 +42,124 @@ export const SETTINGS = {
   }
 } as const;
 
+// キャラクター定義（characters.yaml から生成）
+export const CHARACTERS = {
+  "aoi": {
+    "name": "あおい",
+    "description": "ロボット女子。耳からアンテナが生えている。元気で明るい。",
+    "voice_instruct": "元気いっぱいで明るい少女の声。テンション高めでハキハキと話す。友達に話しかけるようなフレンドリーな口調",
+    "color": "#00BFFF",
+    "position": "right"
+  },
+  "murasaki": {
+    "name": "むらさき",
+    "description": "紫の着物を着た知的な女性。クールで落ち着いている。",
+    "voice_instruct": "知的でクールな大人の女性の声。落ち着いていて淡々と話す。少しミステリアスな雰囲気",
+    "color": "#9932CC",
+    "position": "left"
+  },
+  "mofumo": {
+    "name": "もふも",
+    "description": "もふもふの毛がふさふさな謎の小動物。のんびりしている。",
+    "voice_instruct": "高い声でのんびりとした謎の小動物の声。ふわふわした話し方。語尾が伸びる",
+    "color": "#FFB6C1",
+    "position": "right"
+  },
+  "yoru": {
+    "name": "よる",
+    "description": "深夜にコンビニに行く感じのパーカー女子。眠そうで気だるい。",
+    "voice_instruct": "眠そうで気だるい女の子の声。ゆるくてマイペース。深夜テンション",
+    "color": "#4169E1",
+    "position": "left"
+  }
+} as const;
+
+// 利用可能な感情
+export const EMOTIONS = [
+  "normal",
+  "happy",
+  "surprised",
+  "thinking",
+  "sad"
+] as const;
+
 // キャラクターごとの利用可能な画像ファイル
 export const AVAILABLE_IMAGES: Record<string, string[]> = {
-  "kuro_zunda": [
+  "aoi": [
+    "happy_close.png",
+    "happy_open.png",
     "mouth_close.png",
-    "mouth_open.png"
+    "mouth_open.png",
+    "sad_close.png",
+    "sad_open.png",
+    "surprised_close.png",
+    "surprised_open.png",
+    "thinking_close.png",
+    "thinking_open.png"
   ],
   "metan": [
+    "happy_close.png",
+    "happy_open.png",
     "mouth_close.png",
-    "mouth_open.png"
+    "mouth_open.png",
+    "sad_close.png",
+    "sad_open.png",
+    "surprised_close.png",
+    "surprised_open.png",
+    "thinking_close.png",
+    "thinking_open.png"
+  ],
+  "mofumo": [
+    "happy_close.png",
+    "happy_open.png",
+    "mouth_close.png",
+    "mouth_open.png",
+    "sad_close.png",
+    "sad_open.png",
+    "surprised_close.png",
+    "surprised_open.png",
+    "thinking_close.png",
+    "thinking_open.png"
+  ],
+  "murasaki": [
+    "happy_close.png",
+    "happy_open.png",
+    "mouth_close.png",
+    "mouth_open.png",
+    "sad_close.png",
+    "sad_open.png",
+    "surprised_close.png",
+    "surprised_open.png",
+    "thinking_close.png",
+    "thinking_open.png"
+  ],
+  "yoru": [
+    "happy_close.png",
+    "happy_open.png",
+    "mouth_close.png",
+    "mouth_open.png",
+    "sad_close.png",
+    "sad_open.png",
+    "surprised_close.png",
+    "surprised_open.png",
+    "thinking_close.png",
+    "thinking_open.png"
   ],
   "zundamon": [
+    "happy_close.png",
+    "happy_open.png",
     "mouth_close.png",
-    "mouth_open.png"
+    "mouth_open.png",
+    "sad_close.png",
+    "sad_open.png",
+    "surprised_close.png",
+    "surprised_open.png",
+    "thinking_close.png",
+    "thinking_open.png"
   ]
 };
 
+// 型定義
 export type VideoSettings = typeof SETTINGS;
+export type CharacterId = "aoi" | "murasaki" | "mofumo" | "yoru";
+export type Emotion = typeof EMOTIONS[number];

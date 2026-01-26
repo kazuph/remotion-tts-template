@@ -1,0 +1,41 @@
+# キャラクター定義
+# このファイルで定義されたキャラクターが動画で使用可能になります
+# 画像は public/images/{id}/ に配置してください
+
+characters:
+  aoi:
+    name: "あおい"
+    description: "ロボット女子。耳からアンテナが生えている。元気で明るい。"
+    voice_instruct: "元気いっぱいで明るい少女の声。テンション高めでハキハキと話す。友達に話しかけるようなフレンドリーな口調"
+    color: "#00BFFF"
+    position: "right"
+
+  murasaki:
+    name: "むらさき"
+    description: "紫の着物を着た知的な女性。クールで落ち着いている。"
+    voice_instruct: "知的でクールな大人の女性の声。落ち着いていて淡々と話す。少しミステリアスな雰囲気"
+    color: "#9932CC"
+    position: "left"
+
+  mofumo:
+    name: "もふも"
+    description: "もふもふの毛がふさふさな謎の小動物。のんびりしている。"
+    voice_instruct: "高い声でのんびりとした謎の小動物の声。ふわふわした話し方。語尾が伸びる"
+    color: "#FFB6C1"
+    position: "right"
+
+  yoru:
+    name: "よる"
+    description: "深夜にコンビニに行く感じのパーカー女子。眠そうで気だるい。"
+    voice_instruct: "眠そうで気だるい女の子の声。ゆるくてマイペース。深夜テンション"
+    color: "#4169E1"
+    position: "left"
+
+# 感情の種類（すべてのキャラクターで共通）
+# 各感情には mouth_close と mouth_open の2枚の画像が必要
+emotions:
+  - normal      # デフォルト（mouth_close.png, mouth_open.png）
+  - happy       # happy_close.png, happy_open.png
+  - surprised   # surprised_close.png, surprised_open.png
+  - thinking    # thinking_close.png, thinking_open.png
+  - sad         # sad_close.png, sad_open.png

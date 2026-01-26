@@ -1,6 +1,6 @@
 # Remotion + Qwen3-TTS 動画テンプレート
 
-ずんだもん＆めたんの掛け合い紹介動画を簡単に作成できるテンプレートです。
+オリジナルキャラクターの掛け合い紹介動画を簡単に作成できるテンプレートです。
 Apple Silicon Mac上でローカルTTS（Qwen3-TTS）を使用して音声生成します。
 
 
@@ -162,18 +162,77 @@ Claude Codeに話しかけるだけ：
 
 ---
 
+## キャラクターシステム
+
+### デフォルトキャラクター
+
+テンプレートには4人のオリジナルキャラクターが含まれています：
+
+| ID | 名前 | 説明 | 声のトーン |
+|----|------|------|-----------|
+| aoi | あおい | ロボット女子（アンテナ耳） | 元気・明るい |
+| murasaki | むらさき | 紫着物の知的女性 | クール・落ち着き |
+| mofumo | もふも | もふもふ謎小動物 | 高い声・のんびり |
+| yoru | よる | パーカー女子（深夜コンビニ感） | 眠そう・気だるい |
+
+各キャラクターには5種類の表情（normal, happy, surprised, thinking, sad）と口パク用の画像が用意されています。
+
+### キャラクター設定（characters.yaml）
+
+`characters.yaml`でキャラクターを定義します：
+
+```yaml
+characters:
+  aoi:
+    name: "あおい"
+    description: "ロボット女子。耳からアンテナが生えている。元気で明るい。"
+    voice_instruct: "元気いっぱいで明るい少女の声。テンション高めでハキハキと話す"
+    color: "#00BFFF"
+    position: "right"  # 画面右側に表示
+
+  murasaki:
+    name: "むらさき"
+    description: "紫の着物を着た知的な女性。クールで落ち着いている。"
+    voice_instruct: "知的でクールな大人の女性の声。落ち着いていて淡々と話す"
+    color: "#9932CC"
+    position: "left"   # 画面左側に表示
+```
+
+キャラクターを追加・変更したら `npm run sync-settings` を実行してください。
+
+### 画像ファイル構成
+
+```
+public/images/{characterId}/
+├── mouth_close.png      # 基本・口閉じ（必須）
+├── mouth_open.png       # 基本・口開き（必須）
+├── happy_close.png      # happy表情・口閉じ
+├── happy_open.png       # happy表情・口開き
+├── surprised_close.png  # surprised表情
+├── surprised_open.png
+├── thinking_close.png   # thinking表情
+├── thinking_open.png
+├── sad_close.png        # sad表情
+└── sad_open.png
+```
+
+### 新しいキャラクターの追加
+
+1. `characters.yaml`にキャラクター定義を追加
+2. `public/images/{id}/`にフォルダを作成
+3. 画像を配置（最低限 `mouth_close.png`, `mouth_open.png`）
+4. `npm run sync-settings`を実行
+
+画像生成には **[skills/gemini-character-creator/](./skills/gemini-character-creator/)** のスキルが使用できます。
+
+---
+
 ## 音声生成の設定
 
 ### キャラクター音声
 
-`scripts/generate-voices-qwen.py`で音声のスタイルを設定：
-
-```python
-CHARACTER_INSTRUCTS = {
-    "zundamon": "元気で明るく可愛らしい若い女の子の声。語尾に特徴があり、ハキハキとした話し方",
-    "metan": "落ち着いた大人っぽい女性の声。上品で穏やかな話し方",
-}
-```
+音声のスタイルは`characters.yaml`の`voice_instruct`で設定します。
+`scripts/generate-voices-qwen.py`はこのファイルを自動で読み込みます。
 
 ### 再生速度
 
@@ -185,25 +244,6 @@ export const VIDEO_CONFIG = {
   playbackRate: 1.2,  // 音声を1.2倍速で再生
 };
 ```
-
----
-
-## キャラクター画像
-
-`video-settings.yaml`で`useImages: true`に設定し、画像を配置：
-
-```
-public/images/
-├── zundamon/
-│   ├── mouth_open.png   # 口開き（必須）
-│   ├── mouth_close.png  # 口閉じ（必須）
-│   ├── happy_open.png   # 表情差分（任意）
-│   └── ...
-└── metan/
-    └── ...
-```
-
-画像がない場合はプレースホルダーが表示されます。
 
 ---
 
@@ -256,4 +296,4 @@ Qwen3-TTSでの動画生成の詳細は **[skills/remotion-qwen-tts/](./skills/r
 
 MIT License
 
-キャラクター（ずんだもん・四国めたん）の利用規約は各公式サイトをご確認ください。
+デフォルトキャラクター（aoi, murasaki, mofumo, yoru）の画像はGemini APIで生成されたオリジナルキャラクターです。

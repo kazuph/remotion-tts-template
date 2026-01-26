@@ -7,8 +7,8 @@ Qwen3-TTS音声一括生成スクリプト
 
 前提条件:
   - Apple Silicon Mac（MLX使用）
-  - .venvにmlx-audio>=0.3.0, soundfile, numpy がインストールされていること
-    pip install git+https://github.com/Blaizzy/mlx-audio.git soundfile numpy
+  - .venvにmlx-audio>=0.3.0, soundfile, numpy, pyyaml がインストールされていること
+    pip install git+https://github.com/Blaizzy/mlx-audio.git soundfile numpy pyyaml
 """
 
 import re
@@ -19,6 +19,7 @@ from pathlib import Path
 
 import numpy as np
 import soundfile as sf
+import yaml
 from mlx_audio.tts import load
 
 # Suppress tokenizer warning
@@ -28,16 +29,27 @@ warnings.filterwarnings("ignore", message=".*incorrect regex pattern.*")
 ROOT_DIR = Path(__file__).parent.parent
 SCRIPT_PATH = ROOT_DIR / "src" / "data" / "script.ts"
 OUTPUT_DIR = ROOT_DIR / "public" / "voices"
+CHARACTERS_YAML_PATH = ROOT_DIR / "characters.yaml"
 
 # 動画設定（config.tsと合わせる）
 FPS = 30
 PLAYBACK_RATE = 1.2
 
-# キャラクター設定（Qwen-TTS用voice instruct）
-CHARACTER_INSTRUCTS = {
-    "zundamon": "元気で明るく可愛らしい若い女の子の声。語尾に特徴があり、ハキハキとした話し方",
-    "metan": "落ち着いた大人っぽい女性の声。上品で穏やかな話し方",
-}
+
+def load_character_instructs() -> dict[str, str]:
+    """characters.yamlからvoice_instructを読み込む"""
+    with open(CHARACTERS_YAML_PATH, "r", encoding="utf-8") as f:
+        config = yaml.safe_load(f)
+
+    instructs = {}
+    for char_id, char_data in config.get("characters", {}).items():
+        instructs[char_id] = char_data.get("voice_instruct", "普通の声")
+
+    return instructs
+
+
+# キャラクター設定（characters.yamlから動的生成）
+CHARACTER_INSTRUCTS = load_character_instructs()
 
 
 def parse_script_ts(script_path: Path) -> list[dict]:

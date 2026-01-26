@@ -142,17 +142,17 @@ export const Main: React.FC = () => {
 
       {/* キャラクター */}
       <Character
-        characterId="metan"
-        isSpeaking={isSpeaking && currentLine?.character === "metan"}
-        emotion={currentLine?.character === "metan" ? currentLine.emotion : "normal"}
-        mouthData={currentLine?.character === "metan" ? currentMouthData : []}
+        characterId="murasaki"
+        isSpeaking={isSpeaking && currentLine?.character === "murasaki"}
+        emotion={currentLine?.character === "murasaki" ? currentLine.emotion : "normal"}
+        mouthData={currentLine?.character === "murasaki" ? currentMouthData : []}
         frameInLine={frameInLine}
       />
       <Character
-        characterId="zundamon"
-        isSpeaking={isSpeaking && currentLine?.character === "zundamon"}
-        emotion={currentLine?.character === "zundamon" ? currentLine.emotion : "normal"}
-        mouthData={currentLine?.character === "zundamon" ? currentMouthData : []}
+        characterId="aoi"
+        isSpeaking={isSpeaking && currentLine?.character === "aoi"}
+        emotion={currentLine?.character === "aoi" ? currentLine.emotion : "normal"}
+        mouthData={currentLine?.character === "aoi" ? currentMouthData : []}
         frameInLine={frameInLine}
       />
 
