@@ -173,7 +173,7 @@ export const scriptData: ScriptLine[] = [
     text: "しかも口パクが自動で同期するのだ！音声の波形を解析してるのだ！",
     scene: 2,
     voiceFile: "07_zundamon.wav",
-    durationInFrames: 150,
+    durationInFrames: 142,
     pauseAfter: 10,
     emotion: "happy",
     visual: {
@@ -283,7 +283,7 @@ export const scriptData: ScriptLine[] = [
     displayText: "これは便利ね。GitHubからすぐに使えるのかしら？",
     scene: 4,
     voiceFile: "14_metan.wav",
-    durationInFrames: 450,
+    durationInFrames: 184,
     pauseAfter: 15,
   },
   {
