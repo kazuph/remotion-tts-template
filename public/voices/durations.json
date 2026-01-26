@@ -2,73 +2,109 @@
   {
     "id": 1,
     "file": "01_zundamon.wav",
-    "duration": 6.16,
-    "frames": 154
+    "duration": 6.96,
+    "frames": 174
   },
   {
     "id": 2,
     "file": "02_metan.wav",
-    "duration": 7.84,
-    "frames": 196
+    "duration": 4.16,
+    "frames": 104
   },
   {
     "id": 3,
     "file": "03_zundamon.wav",
-    "duration": 9.52,
-    "frames": 238
+    "duration": 11.12,
+    "frames": 278
   },
   {
     "id": 4,
     "file": "04_metan.wav",
-    "duration": 9.6,
-    "frames": 240
+    "duration": 4.96,
+    "frames": 124
   },
   {
     "id": 5,
     "file": "05_zundamon.wav",
-    "duration": 10.24,
-    "frames": 256
+    "duration": 7.84,
+    "frames": 196
   },
   {
     "id": 6,
     "file": "06_metan.wav",
-    "duration": 9.76,
-    "frames": 244
+    "duration": 7.04,
+    "frames": 176
   },
   {
     "id": 7,
     "file": "07_zundamon.wav",
-    "duration": 6.08,
-    "frames": 152
+    "duration": 6.0,
+    "frames": 150
   },
   {
     "id": 8,
     "file": "08_metan.wav",
-    "duration": 11.2,
-    "frames": 280
+    "duration": 3.68,
+    "frames": 92
   },
   {
     "id": 9,
     "file": "09_zundamon.wav",
-    "duration": 8.96,
-    "frames": 224
+    "duration": 7.76,
+    "frames": 194
   },
   {
     "id": 10,
     "file": "10_metan.wav",
-    "duration": 8.32,
-    "frames": 208
+    "duration": 3.52,
+    "frames": 88
   },
   {
     "id": 11,
     "file": "11_zundamon.wav",
-    "duration": 9.76,
-    "frames": 244
+    "duration": 8.88,
+    "frames": 222
   },
   {
     "id": 12,
     "file": "12_metan.wav",
-    "duration": 8.4,
-    "frames": 210
+    "duration": 9.44,
+    "frames": 236
+  },
+  {
+    "id": 13,
+    "file": "13_zundamon.wav",
+    "duration": 6.0,
+    "frames": 150
+  },
+  {
+    "id": 14,
+    "file": "14_metan.wav",
+    "duration": 18.0,
+    "frames": 450
+  },
+  {
+    "id": 15,
+    "file": "15_zundamon.wav",
+    "duration": 8.0,
+    "frames": 200
+  },
+  {
+    "id": 16,
+    "file": "16_zundamon.wav",
+    "duration": 5.04,
+    "frames": 126
+  },
+  {
+    "id": 17,
+    "file": "17_metan.wav",
+    "duration": 2.16,
+    "frames": 54
+  },
+  {
+    "id": 18,
+    "file": "18_zundamon.wav",
+    "duration": 1.44,
+    "frames": 36
   }
 ]

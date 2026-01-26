@@ -28,3 +28,6 @@ npm-debug.log*
 
 # Generated voices (optional - uncomment if you don't want to track)
 # public/voices/
+
+# Video assets (served from GitHub Releases)
+assets/
