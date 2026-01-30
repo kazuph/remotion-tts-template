@@ -307,7 +307,7 @@ font:
   color: "#ffffff"
 
 character:
-  height: 367
+  height: 275
   useImages: true
 
 colors:
