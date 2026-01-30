@@ -4,11 +4,9 @@
 Apple Silicon Mac上でローカルTTS（Qwen3-TTS）を使用して音声生成します。
 
 
-https://github.com/user-attachments/assets/8da41336-2ae6-4b6a-967e-717bf72933ee
 
+https://github.com/user-attachments/assets/a0bba0e6-5497-45a9-b4ab-ecb0974d544a
 
-
-https://github.com/user-attachments/assets/8ce7dee8-d8b6-43ab-8f68-46793b3b9c4d
 
 
 
