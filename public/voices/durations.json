@@ -2,169 +2,139 @@
   {
     "id": 1,
     "file": "01_aoi.wav",
-    "duration": 3.68,
-    "frames": 92
-  },
-  {
-    "id": 2,
-    "file": "02_murasaki.wav",
-    "duration": 4.16,
-    "frames": 104
-  },
-  {
-    "id": 3,
-    "file": "03_aoi.wav",
-    "duration": 4.0,
-    "frames": 100
-  },
-  {
-    "id": 4,
-    "file": "04_aoi.wav",
     "duration": 4.64,
     "frames": 116
   },
   {
-    "id": 5,
-    "file": "05_murasaki.wav",
-    "duration": 6.56,
-    "frames": 164
-  },
-  {
-    "id": 6,
-    "file": "06_zundamon.wav",
-    "duration": 4.8,
-    "frames": 120
-  },
-  {
-    "id": 7,
-    "file": "07_metan.wav",
-    "duration": 6.08,
-    "frames": 152
-  },
-  {
-    "id": 8,
-    "file": "08_mofumo.wav",
-    "duration": 6.56,
-    "frames": 164
-  },
-  {
-    "id": 9,
-    "file": "09_yoru.wav",
-    "duration": 6.72,
-    "frames": 168
-  },
-  {
-    "id": 28,
-    "file": "28_doko.wav",
-    "duration": 5.28,
-    "frames": 132
-  },
-  {
-    "id": 10,
-    "file": "10_zundamon.wav",
-    "duration": 4.24,
-    "frames": 106
-  },
-  {
-    "id": 11,
-    "file": "11_mofumo.wav",
-    "duration": 2.96,
-    "frames": 74
-  },
-  {
-    "id": 12,
-    "file": "12_zundamon.wav",
-    "duration": 4.88,
-    "frames": 122
-  },
-  {
-    "id": 13,
-    "file": "13_mofumo.wav",
-    "duration": 5.12,
-    "frames": 128
-  },
-  {
-    "id": 14,
-    "file": "14_zundamon.wav",
-    "duration": 4.96,
-    "frames": 124
-  },
-  {
-    "id": 15,
-    "file": "15_murasaki.wav",
+    "id": 2,
+    "file": "02_murasaki.wav",
     "duration": 3.52,
     "frames": 88
   },
   {
+    "id": 3,
+    "file": "03_aoi.wav",
+    "duration": 4.48,
+    "frames": 112
+  },
+  {
+    "id": 4,
+    "file": "04_aoi.wav",
+    "duration": 5.68,
+    "frames": 142
+  },
+  {
+    "id": 5,
+    "file": "05_murasaki.wav",
+    "duration": 6.32,
+    "frames": 158
+  },
+  {
+    "id": 6,
+    "file": "06_mofumo.wav",
+    "duration": 4.64,
+    "frames": 116
+  },
+  {
+    "id": 7,
+    "file": "07_yoru.wav",
+    "duration": 25.52,
+    "frames": 638
+  },
+  {
+    "id": 8,
+    "file": "08_doko.wav",
+    "duration": 6.48,
+    "frames": 162
+  },
+  {
+    "id": 9,
+    "file": "09_mofumo.wav",
+    "duration": 2.8,
+    "frames": 70
+  },
+  {
+    "id": 10,
+    "file": "10_yoru.wav",
+    "duration": 10.56,
+    "frames": 264
+  },
+  {
+    "id": 11,
+    "file": "11_mofumo.wav",
+    "duration": 3.12,
+    "frames": 78
+  },
+  {
+    "id": 12,
+    "file": "12_yoru.wav",
+    "duration": 17.76,
+    "frames": 444
+  },
+  {
+    "id": 13,
+    "file": "13_aoi.wav",
+    "duration": 3.12,
+    "frames": 78
+  },
+  {
+    "id": 14,
+    "file": "14_doko.wav",
+    "duration": 5.76,
+    "frames": 144
+  },
+  {
+    "id": 15,
+    "file": "15_aoi.wav",
+    "duration": 2.0,
+    "frames": 50
+  },
+  {
     "id": 16,
-    "file": "16_yoru.wav",
-    "duration": 8.08,
-    "frames": 202
+    "file": "16_doko.wav",
+    "duration": 5.28,
+    "frames": 132
   },
   {
     "id": 17,
-    "file": "17_murasaki.wav",
-    "duration": 3.92,
-    "frames": 98
+    "file": "17_aoi.wav",
+    "duration": 4.48,
+    "frames": 112
   },
   {
     "id": 18,
-    "file": "18_yoru.wav",
-    "duration": 5.84,
-    "frames": 146
+    "file": "18_murasaki.wav",
+    "duration": 2.4,
+    "frames": 60
   },
   {
     "id": 19,
-    "file": "19_murasaki.wav",
+    "file": "19_mofumo.wav",
     "duration": 3.84,
     "frames": 96
   },
   {
     "id": 20,
-    "file": "20_yoru.wav",
-    "duration": 8.0,
-    "frames": 200
+    "file": "20_murasaki.wav",
+    "duration": 2.4,
+    "frames": 60
   },
   {
     "id": 21,
-    "file": "21_aoi.wav",
-    "duration": 4.08,
-    "frames": 102
+    "file": "21_yoru.wav",
+    "duration": 4.32,
+    "frames": 108
   },
   {
     "id": 22,
-    "file": "22_metan.wav",
-    "duration": 39.52,
-    "frames": 988
+    "file": "22_doko.wav",
+    "duration": 3.76,
+    "frames": 94
   },
   {
     "id": 23,
-    "file": "23_zundamon.wav",
-    "duration": 3.28,
-    "frames": 82
-  },
-  {
-    "id": 24,
-    "file": "24_murasaki.wav",
-    "duration": 2.16,
-    "frames": 54
-  },
-  {
-    "id": 25,
-    "file": "25_mofumo.wav",
-    "duration": 2.08,
-    "frames": 52
-  },
-  {
-    "id": 26,
-    "file": "26_yoru.wav",
-    "duration": 4.16,
-    "frames": 104
-  },
-  {
-    "id": 27,
-    "file": "27_aoi.wav",
-    "duration": 0.8,
-    "frames": 20
+    "file": "23_aoi.wav",
+    "duration": 0.96,
+    "frames": 24
   }
 ]

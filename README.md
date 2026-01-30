@@ -165,7 +165,7 @@ Claude Codeに話しかけるだけ：
 
 ### デフォルトキャラクター
 
-テンプレートには7人のキャラクターが含まれています。4人のオリジナルキャラクターと、東北ずん子プロジェクトの2キャラクター、そして人探し中のどこちゃんです。
+テンプレートには5人のオリジナルキャラクターが含まれています（すべてGemini APIで生成）。
 
 <table>
   <tr>
@@ -196,26 +196,10 @@ Claude Codeに話しかけるだけ：
       <code>#4169E1</code>
     </td>
     <td align="center">
-      <img src="public/images/zundamon/mouth_close.png" width="150"><br>
-      <b>ずんだもん</b><br>
-      枝豆パワー<br>
-      <code>#228B22</code>
-    </td>
-    <td align="center">
-      <img src="public/images/metan/mouth_close.png" width="150"><br>
-      <b>めたん</b><br>
-      ピンク髪メイド<br>
-      <code>#FF1493</code>
-    </td>
-  </tr>
-  <tr>
-    <td align="center">
       <img src="public/images/doko/mouth_close.png" width="150"><br>
       <b>どこ</b><br>
       人探し中！<br>
       <code>#7B9E89</code>
-    </td>
-    <td align="center">
     </td>
     <td align="center">
     </td>
@@ -346,4 +330,3 @@ MIT License
 ### キャラクター素材について
 
 - **オリジナルキャラクター**（aoi, murasaki, mofumo, yoru, doko）: Gemini APIで生成
-- **ずんだもん・四国めたん**: 東北ずん子プロジェクト（[利用規約](https://zunko.jp/guideline.html)に従ってご利用ください）
