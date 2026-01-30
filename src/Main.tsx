@@ -1,11 +1,92 @@
 import { AbsoluteFill, useCurrentFrame, useVideoConfig, Audio, Sequence, staticFile, Loop } from "remotion";
 import { loadFont } from "@remotion/google-fonts/MPLUSRounded1c";
 import { scriptData, scenes, ScriptLine, bgmConfig } from "./data/script";
-import { COLORS, VIDEO_CONFIG } from "./config";
+import { COLORS, VIDEO_CONFIG, CharacterId, DEFAULT_CHARACTERS } from "./config";
 import { Subtitle } from "./components/Subtitle";
 import { Character } from "./components/Character";
 import { SceneVisuals } from "./components/SceneVisuals";
 import { MOUTH_DATA } from "./data/mouth-data.generated";
+
+// 現在のセリフに基づいてキャラクターペアを取得
+// 現在話しているキャラを必ず表示し、同じシーンの直近の別キャラをペアとして表示
+const getSceneCharacters = (
+  sceneId: number,
+  currentLine: ScriptLine | null,
+): [CharacterId | null, CharacterId | null] => {
+  const sceneLines = scriptData.filter(line => line.scene === sceneId);
+  const characters = [...new Set(sceneLines.map(line => line.character))];
+
+  if (characters.length === 0) return [null, null];
+
+  // 1人だけの場合
+  if (characters.length === 1) {
+    const char = DEFAULT_CHARACTERS.find(c => c.id === characters[0]);
+    if (char?.position === "left") return [characters[0], null];
+    return [null, characters[0]];
+  }
+
+  // 2人の場合（ペア対話）：デフォルト位置で左右に配置
+  if (characters.length === 2) {
+    const leftChars = characters.filter(c =>
+      DEFAULT_CHARACTERS.find(dc => dc.id === c)?.position === "left"
+    );
+    const rightChars = characters.filter(c =>
+      DEFAULT_CHARACTERS.find(dc => dc.id === c)?.position === "right"
+    );
+    const leftChar = leftChars[0] || rightChars[1] || characters[0];
+    const rightChar = rightChars[0] || leftChars[1] || characters[1] || characters[0];
+    return [leftChar as CharacterId, rightChar as CharacterId];
+  }
+
+  // 3人以上の場合（エンディング等）：現在のスピーカーを中心に表示
+  if (currentLine) {
+    const currentChar = currentLine.character;
+    const currentConfig = DEFAULT_CHARACTERS.find(c => c.id === currentChar);
+    const currentIndex = sceneLines.findIndex(line => line.id === currentLine.id);
+
+    // 同じシーン内の直前の別キャラを探す
+    let otherChar: CharacterId | null = null;
+    for (let i = currentIndex - 1; i >= 0; i--) {
+      if (sceneLines[i].character !== currentChar) {
+        otherChar = sceneLines[i].character;
+        break;
+      }
+    }
+    // 見つからなければ直後から探す
+    if (!otherChar) {
+      for (let i = currentIndex + 1; i < sceneLines.length; i++) {
+        if (sceneLines[i].character !== currentChar) {
+          otherChar = sceneLines[i].character;
+          break;
+        }
+      }
+    }
+
+    // ペアがいない場合は1人だけ表示
+    if (!otherChar) {
+      if (currentConfig?.position === "left") return [currentChar, null];
+      return [null, currentChar];
+    }
+
+    // 現在のキャラの位置に基づいて左右を決定
+    if (currentConfig?.position === "left") {
+      return [currentChar, otherChar];
+    } else {
+      return [otherChar, currentChar];
+    }
+  }
+
+  // フォールバック：最初の2キャラを使用
+  const leftChars = characters.filter(c =>
+    DEFAULT_CHARACTERS.find(dc => dc.id === c)?.position === "left"
+  );
+  const rightChars = characters.filter(c =>
+    DEFAULT_CHARACTERS.find(dc => dc.id === c)?.position === "right"
+  );
+  const leftChar = leftChars[0] || characters[0];
+  const rightChar = rightChars[0] || characters[1] || characters[0];
+  return [leftChar as CharacterId, rightChar as CharacterId];
+};
 
 // Google Fontsをロード
 const { fontFamily } = loadFont();
@@ -140,21 +221,34 @@ export const Main: React.FC = () => {
         visual={currentLine?.visual}
       />
 
-      {/* キャラクター */}
-      <Character
-        characterId="murasaki"
-        isSpeaking={isSpeaking && currentLine?.character === "murasaki"}
-        emotion={currentLine?.character === "murasaki" ? currentLine.emotion : "normal"}
-        mouthData={currentLine?.character === "murasaki" ? currentMouthData : []}
-        frameInLine={frameInLine}
-      />
-      <Character
-        characterId="aoi"
-        isSpeaking={isSpeaking && currentLine?.character === "aoi"}
-        emotion={currentLine?.character === "aoi" ? currentLine.emotion : "normal"}
-        mouthData={currentLine?.character === "aoi" ? currentMouthData : []}
-        frameInLine={frameInLine}
-      />
+      {/* キャラクター（シーンに応じて動的に切り替え） */}
+      {(() => {
+        const [leftChar, rightChar] = getSceneCharacters(currentScene, currentLine);
+        return (
+          <>
+            {leftChar && (
+              <Character
+                characterId={leftChar}
+                isSpeaking={isSpeaking && currentLine?.character === leftChar}
+                emotion={currentLine?.character === leftChar ? currentLine.emotion : "normal"}
+                mouthData={currentLine?.character === leftChar ? currentMouthData : []}
+                frameInLine={frameInLine}
+                forcePosition="left"
+              />
+            )}
+            {rightChar && (
+              <Character
+                characterId={rightChar}
+                isSpeaking={isSpeaking && currentLine?.character === rightChar}
+                emotion={currentLine?.character === rightChar ? currentLine.emotion : "normal"}
+                mouthData={currentLine?.character === rightChar ? currentMouthData : []}
+                frameInLine={frameInLine}
+                forcePosition="right"
+              />
+            )}
+          </>
+        );
+      })()}
 
       {/* 字幕 */}
       {currentLine && (

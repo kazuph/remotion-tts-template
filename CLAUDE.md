@@ -19,6 +19,72 @@ osascript -e 'tell application "QuickTime Player" to quit' 2>/dev/null; sleep 1;
 
 **理由**: QuickTimeがキャッシュを保持するため、同じファイル名だと古い動画が再生される。
 
+### 新規キャラクター画像の追加ワークフロー
+
+ユーザーから新しいキャラクター画像を受け取ったら、以下の手順で全emotion画像を生成する。
+
+#### 1. 使用するモデル（重要！）
+
+```
+✅ 使用OK: gemini-3-pro-image-preview（Gemini 3.0 Pro）
+❌ 使用NG: gemini-2.0-flash-exp-image-generation（古いモデル）
+```
+
+**重要**: Gemini 2.0は絶対に使わない。最低でも2.5、推奨は3.0。
+
+#### 2. 参照ベース生成の順序
+
+必ず既存画像を参照して次の画像を生成する（一貫性を保つため）：
+
+```
+元画像 → mouth_close（白背景化＋口閉じ）
+  ↓
+mouth_close → mouth_open
+  ↓
+mouth_close → happy_close → happy_open
+  ↓
+mouth_close → surprised_close → surprised_open
+  ↓
+mouth_close → thinking_close → thinking_open
+  ↓
+mouth_close → sad_close → sad_open
+```
+
+#### 3. 生成スクリプト
+
+```python
+# /tmp/edit_expression.py を使用
+python3 /tmp/edit_expression.py \
+  <入力画像> \
+  "<プロンプト>" \
+  <出力画像>
+```
+
+**プロンプト例**:
+- 白背景化: `"Change the background to plain white. Keep everything else exactly the same. Plain white background."`
+- 口開き: `"Change only the mouth to be slightly open as if speaking. Keep everything else exactly the same. Plain white background."`
+- 表情変更: `"Change the expression to happy/smiling. Mouth stays closed. Keep everything else exactly the same. Plain white background."`
+
+#### 4. 透過処理
+
+```bash
+# fuzz 3%で黒線を保護しながら白背景を透過
+magick input.png -fuzz 3% -fill none -draw "color 0,0 floodfill" output.png
+```
+
+**重要**: fuzz値が高すぎると黒線が白くなる！
+- ❌ fuzz 15%: 黒線が壊れる
+- ✅ fuzz 3%: 黒線を保護
+
+#### 5. 追加手順まとめ
+
+1. `characters.yaml` にキャラクター定義を追加
+2. `public/images/{id}/` フォルダを作成
+3. Gemini 3.0 Proで10枚の画像を参照ベースで生成
+4. fuzz 3%で透過処理
+5. `npm run sync-settings` で設定を同期
+6. 動画をビルドして確認
+
 ---
 
 ## 目次

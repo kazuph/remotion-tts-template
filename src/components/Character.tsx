@@ -8,6 +8,7 @@ interface CharacterProps {
   emotion?: string;
   mouthData?: boolean[]; // 各フレームで口を開けるかどうか
   frameInLine?: number; // セリフ内での現在フレーム位置
+  forcePosition?: "left" | "right"; // 配置位置を強制する場合
 }
 
 // 表情に応じた画像ファイル名を取得（存在チェック付き）
@@ -46,6 +47,7 @@ export const Character: React.FC<CharacterProps> = ({
   emotion = "normal",
   mouthData = [],
   frameInLine = 0,
+  forcePosition,
 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
@@ -56,7 +58,9 @@ export const Character: React.FC<CharacterProps> = ({
     return null;
   }
 
-  const isLeft = characterConfig.position === "left";
+  // forcePositionが指定されていればそれを使用、なければデフォルトの位置
+  const position = forcePosition || characterConfig.position;
+  const isLeft = position === "left";
 
   // 口パクアニメーション（音声波形データを使用）
   // mouthDataがある場合はそれを使用、ない場合は従来の方法
@@ -92,7 +96,7 @@ export const Character: React.FC<CharacterProps> = ({
       style={{
         position: "absolute",
         bottom: 0,
-        [characterConfig.position]: slideIn,
+        [position]: slideIn,
         transform: `translateY(${bounceY}px) scale(${scale})`,
         transformOrigin: isLeft ? "bottom left" : "bottom right",
       }}

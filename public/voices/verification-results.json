@@ -1,89 +1,204 @@
 {
-  "average_similarity": 0.859,
-  "warnings": [],
+  "average_similarity": 0.765,
+  "warnings": [
+    "ID 5: 類似度 63.8% - テキストが一致しない可能性",
+    "ID 6: 類似度 52.4% - テキストが一致しない可能性",
+    "ID 9: 類似度 62.1% - テキストが一致しない可能性",
+    "ID 12: 類似度 58.3% - テキストが一致しない可能性",
+    "ID 13: 類似度 66.7% - テキストが一致しない可能性",
+    "ID 16: 類似度 34.8% - テキストが一致しない可能性",
+    "ID 17: 類似度 68.8% - テキストが一致しない可能性",
+    "ID 19: 類似度 60.9% - テキストが一致しない可能性",
+    "ID 22: 類似度 66.7% - テキストが一致しない可能性"
+  ],
   "results": [
     {
       "id": 1,
-      "character": "zundamon",
-      "original": "やっほー！ずんだもんなのだ！今日はすごいお知らせがあるのだ！",
-      "transcribed": "いやほう、 つんだもんなのだ今日はすごいお知らせがあるのだ",
+      "character": "aoi",
+      "original": "やっほー！今日は特別な動画だよ！",
+      "transcribed": "いやー!今日は特別な動画だよ!",
       "similarity": 0.889
     },
     {
       "id": 2,
-      "character": "metan",
-      "original": "あら、ずんだもん。何かしら？そんなに興奮して。",
-      "transcribed": "あら、ツンダも、何か知ら、そんなに幸福して。",
-      "similarity": 0.703
+      "character": "murasaki",
+      "original": "このテンプレートで使えるキャラクターを紹介するわ。",
+      "transcribed": "このテンプレートで使えるキャラクターを紹介するわ",
+      "similarity": 1.0
     },
     {
       "id": 3,
-      "character": "zundamon",
-      "original": "なんと！クウェンスリーティーティーエスという音声合成が、マックでローカル実行できるようになったのだ！",
-      "transcribed": "なんと、クエンスリーディーとーエストユーン想号性がマックでローカルジックをできるようになったのだ",
-      "similarity": 0.723
-    },
-    {
-      "id": 4,
-      "character": "metan",
-      "original": "それは興味深いわね。クラウドに送らなくても音声が作れるということかしら？",
-      "transcribed": "それは興味深いわね。クラウドに送らなくても、音声が作れるという事かしら。",
+      "character": "aoi",
+      "original": "全部で6人いるんだよ！順番に自己紹介していくね！",
+      "transcribed": "全部で6にいるんだよ、順番に自己紹介していくね。",
       "similarity": 0.955
     },
     {
+      "id": 4,
+      "character": "aoi",
+      "original": "私はあおい！ロボット女子だよ！元気いっぱいがモットー！",
+      "transcribed": "私は青い!ロボット上手だよ!元気いっぱいがもとー!",
+      "similarity": 0.826
+    },
+    {
       "id": 5,
-      "character": "zundamon",
-      "original": "そうなのだ！エムエルエックスという技術でアップルシリコンのマックに最適化されてるのだ！",
-      "transcribed": "そうなのだー!MLXという技術でアップルシリコンのマックに最適化されているのだ!",
-      "similarity": 0.835
+      "character": "murasaki",
+      "original": "私はむらさき。知的でクールな着物美人よ。よろしくね。",
+      "transcribed": "私は村先知的でクールなチェモのベジンよよろしくね",
+      "similarity": 0.638
     },
     {
       "id": 6,
-      "character": "metan",
-      "original": "へぇ、それならインターネット環境がなくても使えるわね。プライバシーの面でも安心だわ。",
-      "transcribed": "それだらインターネット環境がなくても使えるわねプライバシーの面でも安心だわ",
-      "similarity": 0.947
+      "character": "zundamon",
+      "original": "ずんだもんなのだ！枝豆パワーで頑張るのだ！",
+      "transcribed": "ずんたもんなのだえったまーけてでいかんパルのだ",
+      "similarity": 0.524
     },
     {
       "id": 7,
-      "character": "zundamon",
-      "original": "しかもボイスデザインモードっていう機能があって、声の特徴を文章で指定できるのだ！",
-      "transcribed": "しかも、ボイスデザイモードって雪の上って、声の特徴を文章でしてできるのだ。",
-      "similarity": 0.806
+      "character": "metan",
+      "original": "四国めたんよ。ずんだもんと一緒によく登場するわ。",
+      "transcribed": "地獄メタンよ ズンダモンと一緒によく登場するは",
+      "similarity": 0.773
     },
     {
       "id": 8,
-      "character": "metan",
-      "original": "つまり、元気な声とか、落ち着いた声とか、好みの声を作れるということね。それは便利だわ。",
-      "transcribed": "つまり、元気な声とか落ち着いた声とかこのみの声を作れるということね。それは便利だわ。",
-      "similarity": 0.961
+      "character": "mofumo",
+      "original": "もふもだよー。もふもふしてるのー。",
+      "transcribed": "もうふもたよ もうふもふしてるの",
+      "similarity": 0.8
     },
     {
       "id": 9,
-      "character": "zundamon",
-      "original": "モデルサイズも選べて、軽いやつなら1.7ビリオンパラメータで動くのだ！",
-      "transcribed": "モデルサイズも選べて、軽やつなら1.7ビリオンパラメーターで動くのだ!",
-      "similarity": 0.969
+      "character": "yoru",
+      "original": "よるだよー。眠いー。深夜テンションー。",
+      "transcribed": "夜だよ眠い シンやテンション",
+      "similarity": 0.621
     },
     {
       "id": 10,
-      "character": "metan",
-      "original": "4ビット量子化されているのかしら？それならメモリも少なくて済むわね。",
-      "transcribed": "商品と利用しがされているのかしら、それならメモリも少なくてつもわね。",
-      "similarity": 0.75
+      "character": "zundamon",
+      "original": "もふも！一緒に遊ぶのだ！",
+      "transcribed": "あ、もう、もう一緒に遊ぶのだ!",
+      "similarity": 0.818
     },
     {
       "id": 11,
-      "character": "zundamon",
-      "original": "さすがめたんは詳しいのだ！というわけで、みんなもローカル音声合成を試してみてほしいのだ！",
-      "transcribed": "さすがめたのは詳しいのだ。というわけで、みんなも労かる音声語を制を試してみてほしいのだ。",
-      "similarity": 0.878
+      "character": "mofumo",
+      "original": "わーい！何して遊ぶのー？",
+      "transcribed": "あーーーい!何して遊ぶの?",
+      "similarity": 0.762
     },
     {
       "id": 12,
+      "character": "zundamon",
+      "original": "枝豆を数えるのだ！1、2、3…",
+      "transcribed": "いだまのお数えるのだ!1、3",
+      "similarity": 0.583
+    },
+    {
+      "id": 13,
+      "character": "mofumo",
+      "original": "すごーい…でも眠くなってきたー…",
+      "transcribed": "すごい!でもね、もう行ってきたー",
+      "similarity": 0.667
+    },
+    {
+      "id": 14,
+      "character": "zundamon",
+      "original": "起きるのだ！まだ3つしか数えてないのだ！",
+      "transcribed": "あきるのだーまだ3つしか数えてないのだー",
+      "similarity": 0.895
+    },
+    {
+      "id": 15,
+      "character": "murasaki",
+      "original": "よる、最近何してるの？",
+      "transcribed": "夜、最近、何してるの?",
+      "similarity": 0.824
+    },
+    {
+      "id": 16,
+      "character": "yoru",
+      "original": "んー…深夜アニメ見てるー…",
+      "transcribed": "ほー 幸にめみでるハッ",
+      "similarity": 0.348
+    },
+    {
+      "id": 17,
+      "character": "murasaki",
+      "original": "それで眠そうなのね。体に悪いわよ。",
+      "transcribed": "それで、寝物をなのねたらだに悪いわよ",
+      "similarity": 0.688
+    },
+    {
+      "id": 18,
+      "character": "yoru",
+      "original": "でも面白いんだもんー…むらさきさんも見るー？",
+      "transcribed": "でも面白いんだもん村先さんも見る",
+      "similarity": 0.757
+    },
+    {
+      "id": 19,
+      "character": "murasaki",
+      "original": "…少しだけなら付き合うわ。",
+      "transcribed": "そこしだけだらつき合わ",
+      "similarity": 0.609
+    },
+    {
+      "id": 20,
+      "character": "yoru",
+      "original": "やったー。ポテチ持ってくるー。",
+      "transcribed": "やったーポテチもてくる",
+      "similarity": 0.833
+    },
+    {
+      "id": 21,
+      "character": "aoi",
+      "original": "というわけで、6人のキャラクターを紹介したよ！",
+      "transcribed": "という影響で、6人のキャラクターを紹介したよ。",
+      "similarity": 0.905
+    },
+    {
+      "id": 22,
       "character": "metan",
-      "original": "それでは、良い音声合成ライフをお過ごしくださいね。バイバイ。",
-      "transcribed": "それでは、よい音声講性ライフをお過ごしくださいね。バイバイ。",
+      "original": "好きな組み合わせで動画を作ってみてね。",
+      "transcribed": "すっすっすっすぎなく見合わせで動画を作ってみてね",
+      "similarity": 0.667
+    },
+    {
+      "id": 23,
+      "character": "zundamon",
+      "original": "キャラクターは簡単に追加できるのだ！",
+      "transcribed": "キャラッターは簡単に追加できるのだ",
+      "similarity": 0.941
+    },
+    {
+      "id": 24,
+      "character": "murasaki",
+      "original": "ヤムルファイルで設定するだけよ。",
+      "transcribed": "やむるファイルで設定するだけよ",
+      "similarity": 1.0
+    },
+    {
+      "id": 25,
+      "character": "mofumo",
+      "original": "みんなで動画作ろうねー！",
+      "transcribed": "みんなでどうか作ろうね",
+      "similarity": 0.727
+    },
+    {
+      "id": 26,
+      "character": "yoru",
+      "original": "じゃあねー。おやすみー。",
+      "transcribed": "じゃねー 早すみ",
+      "similarity": 0.706
+    },
+    {
+      "id": 27,
+      "character": "aoi",
+      "original": "バイバーイ！",
+      "transcribed": "バイバイ!",
       "similarity": 0.889
     }
   ]

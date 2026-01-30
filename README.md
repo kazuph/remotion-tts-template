@@ -166,14 +166,62 @@ Claude Codeに話しかけるだけ：
 
 ### デフォルトキャラクター
 
-テンプレートには4人のオリジナルキャラクターが含まれています：
+テンプレートには7人のキャラクターが含まれています。4人のオリジナルキャラクターと、東北ずん子プロジェクトの2キャラクター、そして人探し中のどこちゃんです。
 
-| ID | 名前 | 説明 | 声のトーン |
-|----|------|------|-----------|
-| aoi | あおい | ロボット女子（アンテナ耳） | 元気・明るい |
-| murasaki | むらさき | 紫着物の知的女性 | クール・落ち着き |
-| mofumo | もふも | もふもふ謎小動物 | 高い声・のんびり |
-| yoru | よる | パーカー女子（深夜コンビニ感） | 眠そう・気だるい |
+<table>
+  <tr>
+    <td align="center" width="33%">
+      <img src="public/images/aoi/mouth_close.png" width="150"><br>
+      <b>あおい</b><br>
+      ロボット女子<br>
+      <code>#00BFFF</code>
+    </td>
+    <td align="center" width="33%">
+      <img src="public/images/murasaki/mouth_close.png" width="150"><br>
+      <b>むらさき</b><br>
+      知的な着物美人<br>
+      <code>#9932CC</code>
+    </td>
+    <td align="center" width="33%">
+      <img src="public/images/mofumo/mouth_close.png" width="150"><br>
+      <b>もふも</b><br>
+      もふもふ小動物<br>
+      <code>#FFB6C1</code>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="public/images/yoru/mouth_close.png" width="150"><br>
+      <b>よる</b><br>
+      パーカー女子<br>
+      <code>#4169E1</code>
+    </td>
+    <td align="center">
+      <img src="public/images/zundamon/mouth_close.png" width="150"><br>
+      <b>ずんだもん</b><br>
+      枝豆パワー<br>
+      <code>#228B22</code>
+    </td>
+    <td align="center">
+      <img src="public/images/metan/mouth_close.png" width="150"><br>
+      <b>めたん</b><br>
+      ピンク髪メイド<br>
+      <code>#FF1493</code>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="public/images/doko/mouth_close.png" width="150"><br>
+      <b>どこ</b><br>
+      人探し中！<br>
+      <code>#7B9E89</code>
+    </td>
+    <td align="center">
+    </td>
+    <td align="center">
+    </td>
+  </tr>
+</table>
 
 各キャラクターには5種類の表情（normal, happy, surprised, thinking, sad）と口パク用の画像が用意されています。
 
@@ -296,4 +344,7 @@ Qwen3-TTSでの動画生成の詳細は **[skills/remotion-qwen-tts/](./skills/r
 
 MIT License
 
-デフォルトキャラクター（aoi, murasaki, mofumo, yoru）の画像はGemini APIで生成されたオリジナルキャラクターです。
+### キャラクター素材について
+
+- **オリジナルキャラクター**（aoi, murasaki, mofumo, yoru, doko）: Gemini APIで生成
+- **ずんだもん・四国めたん**: 東北ずん子プロジェクト（[利用規約](https://zunko.jp/guideline.html)に従ってご利用ください）

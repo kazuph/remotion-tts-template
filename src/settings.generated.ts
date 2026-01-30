@@ -61,7 +61,7 @@ export const CHARACTERS = {
   "mofumo": {
     "name": "もふも",
     "description": "もふもふの毛がふさふさな謎の小動物。のんびりしている。",
-    "voice_instruct": "高い声でのんびりとした謎の小動物の声。ふわふわした話し方。語尾が伸びる",
+    "voice_instruct": "高い女の子の声でのんびりとした謎の小動物。ふわふわした可愛い話し方。語尾が伸びる",
     "color": "#FFB6C1",
     "position": "right"
   },
@@ -71,6 +71,27 @@ export const CHARACTERS = {
     "voice_instruct": "眠そうで気だるい女の子の声。ゆるくてマイペース。深夜テンション",
     "color": "#4169E1",
     "position": "left"
+  },
+  "zundamon": {
+    "name": "ずんだもん",
+    "description": "東北ずん子の関連キャラ。緑の枝豆をモチーフにしたちびキャラ。",
+    "voice_instruct": "元気で明るい女の子の声。高めのトーンで可愛らしく話す。語尾に「〜のだ」「〜なのだ」をつける",
+    "color": "#228B22",
+    "position": "right"
+  },
+  "metan": {
+    "name": "めたん",
+    "description": "四国めたん。ピンク髪のメイド風キャラ。",
+    "voice_instruct": "落ち着いた大人の女性の声。語尾に「〜わ」「〜ね」をつける",
+    "color": "#FF1493",
+    "position": "left"
+  },
+  "doko": {
+    "name": "どこ",
+    "description": "人を探している元気な女の子。グレーのパーカーを着て敬礼ポーズ。",
+    "voice_instruct": "元気いっぱいで明るい女の子の声。ハキハキと話す。人懐っこくてフレンドリー",
+    "color": "#7B9E89",
+    "position": "right"
   }
 } as const;
 
@@ -86,6 +107,18 @@ export const EMOTIONS = [
 // キャラクターごとの利用可能な画像ファイル
 export const AVAILABLE_IMAGES: Record<string, string[]> = {
   "aoi": [
+    "happy_close.png",
+    "happy_open.png",
+    "mouth_close.png",
+    "mouth_open.png",
+    "sad_close.png",
+    "sad_open.png",
+    "surprised_close.png",
+    "surprised_open.png",
+    "thinking_close.png",
+    "thinking_open.png"
+  ],
+  "doko": [
     "happy_close.png",
     "happy_open.png",
     "mouth_close.png",
@@ -161,5 +194,5 @@ export const AVAILABLE_IMAGES: Record<string, string[]> = {
 
 // 型定義
 export type VideoSettings = typeof SETTINGS;
-export type CharacterId = "aoi" | "murasaki" | "mofumo" | "yoru";
+export type CharacterId = "aoi" | "murasaki" | "mofumo" | "yoru" | "zundamon" | "metan" | "doko";
 export type Emotion = typeof EMOTIONS[number];

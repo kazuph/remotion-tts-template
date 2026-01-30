@@ -169,10 +169,11 @@ def main():
 
         # 音声生成
         # max_tokensの計算: 1秒あたり約12.5トークン
-        # 日本語は1文字あたり約0.3秒程度と想定
+        # 日本語は話し方によって長さが大きく変動する（特にゆっくり話すキャラ）
         # max_tokensはセリフが収まる十分な長さを確保（短すぎると途切れる）
-        estimated_duration = max(len(text) * 0.4, 3.0)  # 最低3秒、1文字0.4秒で余裕を持たせる
-        max_tokens = int(estimated_duration * 12.5) + 100  # 余裕を持たせたトークン数
+        # ユーザーからのフィードバック: 現在の計算では成功率が低いので大幅に余裕を持たせる
+        estimated_duration = max(len(text) * 1.0, 5.0)  # 最低5秒、1文字1.0秒で大きく余裕
+        max_tokens = int(estimated_duration * 15) + 300  # さらに余裕を持たせたトークン数
 
         result = next(model.generate_voice_design(
             text=text,
